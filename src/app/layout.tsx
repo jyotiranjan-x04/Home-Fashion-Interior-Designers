@@ -17,8 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Only show Navbar if not in /admin route
-  const isAdmin = typeof window !== 'undefined' ? window.location.pathname.startsWith('/admin') : false;
+  // Only show Navbar if not in /admin route (SSR-safe)
+  const isAdmin = typeof window === 'undefined'
+    ? false
+    : window.location.pathname.startsWith('/admin');
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable} dark`}>
       <body className="bg-surface text-white antialiased overflow-x-hidden">
