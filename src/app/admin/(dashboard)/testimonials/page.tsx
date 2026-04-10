@@ -12,8 +12,16 @@ async function deleteTestimonial(formData: FormData) {
     revalidatePath('/admin/testimonials');
 }
 
+type Testimonial = {
+  id: string;
+  name: string;
+  role: string;
+  text: string;
+  // Add other fields as needed from your schema
+};
+
 export default async function AdminTestimonials() {
-    let testimonials: Awaited<ReturnType<typeof prisma.testimonial.findMany>> = [];
+    let testimonials: Testimonial[] = [];
     let dbUnavailable = false;
 
     try {
@@ -53,7 +61,7 @@ export default async function AdminTestimonials() {
                 {testimonials.length === 0 && (
                     <tr><td colSpan={4} className="p-8 text-center text-white/50 italic">No testimonials found. Create one.</td></tr>
                 )}
-                {testimonials.map(testimonial => (
+                {testimonials.map((testimonial: Testimonial) => (
                     <tr key={testimonial.id} className="border-b border-white/5 hover:bg-white/5 group">
                         <td className="p-4 font-headline text-lg">{testimonial.name}</td>
                         <td className="p-4 text-white/60 text-sm">{testimonial.role}</td>
