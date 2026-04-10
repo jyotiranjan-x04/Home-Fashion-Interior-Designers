@@ -1,5 +1,5 @@
 import prisma from '@/lib/prisma';
-import type { Project, Service, Testimonial } from '@prisma/client';
+import type { Project, Service, Testimonial } from '@/types/db';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Portfolio from '@/components/Portfolio';

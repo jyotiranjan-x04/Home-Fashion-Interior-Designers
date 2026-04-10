@@ -5,7 +5,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
 import * as Icons from "lucide-react";
-import { Service } from "@prisma/client";
+import type { Service } from '@/types/db';
 
 export default function Services({ services }: { services: Service[] }) {
   const container = useRef<HTMLElement>(null);

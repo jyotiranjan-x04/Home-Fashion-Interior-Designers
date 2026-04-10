@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Testimonial } from "@prisma/client";
+import type { Testimonial } from '@/types/db';
 
 const DEFAULT_TESTIMONIAL_IMAGE = "/assets/home_testimonial_1775655223364.png";
 

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { Project } from "@prisma/client";
+import type { Project } from '@/types/db';
 
 export default function Portfolio({ projects }: { projects: Project[] }) {
   const container = useRef<HTMLElement>(null);

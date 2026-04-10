@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Footer from '@/components/Footer';
 import prisma from '@/lib/prisma';
-import type { Service } from '@prisma/client';
+import type { Service } from '@/types/db';
 
 export const dynamic = 'force-dynamic';
 
