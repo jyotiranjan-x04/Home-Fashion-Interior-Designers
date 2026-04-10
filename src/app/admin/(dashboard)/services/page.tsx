@@ -12,8 +12,17 @@ async function deleteService(formData: FormData) {
     revalidatePath('/admin/services');
 }
 
+type Service = {
+  id: string;
+  title: string;
+  priority: number;
+  image?: string | null;
+  icon?: string | null;
+  // Add other fields as needed from your schema
+};
+
 export default async function AdminServices() {
-    let services: Awaited<ReturnType<typeof prisma.service.findMany>> = [];
+    let services: Service[] = [];
     let dbUnavailable = false;
 
     try {
@@ -53,7 +62,7 @@ export default async function AdminServices() {
                 {services.length === 0 && (
                     <tr><td colSpan={4} className="p-8 text-center text-white/50 italic">No services found. Create one.</td></tr>
                 )}
-                {services.map(service => (
+                {services.map((service: Service) => (
                     <tr key={service.id} className="border-b border-white/5 hover:bg-white/5 group">
                         <td className="p-4">
                             <div className="w-16 h-10 bg-white/10 rounded overflow-hidden relative flex items-center justify-center text-xs">
