@@ -12,8 +12,17 @@ async function deleteProject(formData: FormData) {
     revalidatePath('/admin/projects');
 }
 
+type Project = {
+    id: string;
+    title: string;
+    category: string;
+    featured: boolean;
+    coverImage?: string | null;
+    // Add other fields as needed from your schema
+};
+
 export default async function AdminProjects() {
-    let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
+    let projects: Project[] = [];
     let dbUnavailable = false;
 
     try {
@@ -54,7 +63,7 @@ export default async function AdminProjects() {
                 {projects.length === 0 && (
                     <tr><td colSpan={5} className="p-8 text-center text-white/50 italic">No projects found. Create one.</td></tr>
                 )}
-                {projects.map(project => (
+                {projects.map((project: Project) => (
                     <tr key={project.id} className="border-b border-white/5 hover:bg-white/5 group">
                         <td className="p-4">
                             <div className="w-16 h-10 bg-white/10 rounded overflow-hidden relative">
